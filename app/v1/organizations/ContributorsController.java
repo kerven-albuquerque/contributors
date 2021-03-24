@@ -1,4 +1,4 @@
-package controllers;
+package v1.organizations;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
