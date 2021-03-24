@@ -43,6 +43,7 @@ public class ContributorsController extends Controller {
                         ObjectNode responseBody = response.asJson().deepCopy();
                         return status(response.getStatus(), responseBody.retain("message"));
                     }
+
                     JsonNode jsonRepos = response.getBody(WSBodyReadables.instance.json());
                     Map<String, Integer> contributions = new HashMap<String, Integer>();
 
@@ -81,9 +82,8 @@ public class ContributorsController extends Controller {
                     return ok(Json.toJson(contributors));
 
                 }, ec.current()).exceptionally(result -> {
-                    System.out.println(result);
                     ObjectNode objectNode = JsonNodeFactory.instance.objectNode();
-                    objectNode.put("message", "API limit exceeded");
+                    objectNode.put("message", "Internal error");
                     return forbidden(Json.toJson(objectNode));
                 });
     }
